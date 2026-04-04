@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package dynamic_trace;
+
+import "address.proto";
+
+message instruction {
+  uint32 pc = 1;
+  uint32 active_mask = 2;
+  uint32 predicate_mask = 3;
+  int32 function_unique_id = 4;
+  repeated address addresses = 5;
+}

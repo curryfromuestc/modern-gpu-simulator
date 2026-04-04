@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package dynamic_trace;
+
+import "warp.proto";
+import "dim3d.proto";
+
+message threadblock {
+  dim3d block_id = 1;
+  map<int32,warp> warps = 2;
+}

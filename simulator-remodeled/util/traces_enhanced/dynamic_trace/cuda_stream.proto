@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package dynamic_trace;
+
+import "kernel.proto";
+
+message cuda_stream {
+  int64 id = 1;
+  repeated kernel kernels = 2;
+  repeated string ordered_cuda_events = 3;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package dynamic_trace;
+
+import "gpu_device.proto";
+
+message Trace {
+  string name = 1;
+  int32 binary_version = 2;
+  string nvbit_version = 3;
+  int32 accelsim_version = 4;
+  bool is_gathered_registers_values = 5;
+  map<int64,gpu_device> gpu_device = 6;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package dynamic_trace;
+
+import "dim3d.proto";
+
+message kernel {
+  int32 id = 1;
+  string name = 2;
+  int32 function_unique_id = 3;
+  int32 size_shared_memory = 4;
+  int32 number_of_registers = 5;
+  int64 shared_memory_base_address = 6;
+  int64 local_memory_base_address = 7;
+  dim3d grid_dim = 8;
+  dim3d block_dim = 9;
+}

@@ -1,0 +1,893 @@
+#   execs:
+#       - <exec_name_1>:
+#           - args: <commandline arg_list 1> # Leave blank if no arguments
+#             <optional> accel-sim-mem: <xG>
+#           - args: <commandline arg_list 2>
+#           ...
+#       - <exec_name_2>
+#           ...
+#       ...
+# If you have a bunch of random benchmarks in random places, then a "suite" can be just one benchmark
+
+# Rodinia 2.0 implemented with a pass/fail functional test
+rodinia_2.0-ft:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/rodinia/2.0-ft/"
+    execs:
+        - backprop-rodinia-2.0-ft:
+            - args:  4096 ./data/result-4096.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - bfs-rodinia-2.0-ft:
+            - args:  ./data/graph4096.txt ./data/graph4096-result.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - hotspot-rodinia-2.0-ft:
+            - args:  30 6 40 ./data/result_30_6_40.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - heartwall-rodinia-2.0-ft:
+            - args:  ./data/test.avi 1 ./data/result-1.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        # Uses legacy texture cache instructions, it is unclear if it still makes sense to support
+#        - kmeans-rodinia-2.0-ft:
+#            - args:  -i ./data/400.txt -g data/400-result.txt -o
+#              accel-sim-mem: 6G
+        - lud-rodinia-2.0-ft:
+            - args:  -v -b -i ./data/64.dat
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - nw-rodinia-2.0-ft:
+            - args:  128 10 ./data/result_128_10.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - nn-rodinia-2.0-ft:
+            - args:  ./data/filelist_4 3 30 90 ./data/filelist_4_3_30_90-result.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - pathfinder-rodinia-2.0-ft:
+            - args:  1000 20 5 ./data/result_1000_20_5.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - srad_v2-rodinia-2.0-ft:
+            - args:  ./data/matrix128x128.txt 0 127 0 127 .5 2 ./data/result_matrix128x128_1_150_1_100_.5_2.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - streamcluster-rodinia-2.0-ft:
+            - args:  3 6 16 1024 1024 100 none output.txt 1 ./data/result_3_6_16_1024_1024_100_none_1.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+
+GPU_Microbenchmark:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/"
+    execs:
+        - l1_bw_32f:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - l1_bw_64f:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - l1_bw_128:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - l1_lat:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - l2_bw_32f:
+            - args: 
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+        - l2_bw_64f:
+            - args: 
+              accel-sim-mem: 25G
+              qos: all
+              openmp-cpus: 6
+#        - l2_bw_128:
+#            - args: 
+#              accel-sim-mem: 6G
+        - l2_lat:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - mem_bw:
+            - args: 
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+        - mem_lat:
+            - args: 
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - shared_bw:
+            - args: 
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 3
+        - shared_lat:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - MaxFlops:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - l1_shared_bw:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - l1_bw_32f_unroll:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - l1_bw_32f_unroll_large:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+
+GPU_Microbenchmark_MaxFlops:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/"
+    execs:
+        - MaxFlops:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+              partition: memory
+
+Deepbench_nvidia_tencore_gemm:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/"
+    execs:
+        - gemm_bench-tencore:
+            - args: train half 1760 7000 1760 0 0
+              accel-sim-mem: 30G
+              qos: all
+              openmp-cpus: 3
+            - args: train half 2048 128 2048 0 0
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: train half 1760 7000 1760 1 0
+              accel-sim-mem: 30G
+              qos: all
+              openmp-cpus: 3
+            - args: train half 2048 64 2048 1 0
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: train half 1760 7133 1760 0 1
+              accel-sim-mem: 60G
+              qos: all
+              openmp-cpus: 8
+              partition: memory
+            # - args: inference half 5124 1500 2048 0 0
+            #   accel-sim-mem: 21G
+            #   qos: big
+            - args: inference half 7680 1 2560 0 0
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: inference half 6144 4 2048 0 0
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: inference half 512 3000 1536 0 0
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: inference half 35 1500 2560 0 0
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+
+
+rodinia-3.1:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/rodinia/3.1/"
+    execs:
+        - b+tree-rodinia-3.1:
+            - args:  file ./data/mil.txt command ./data/command.txt
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - backprop-rodinia-3.1:
+            - args:  65536
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - bfs-rodinia-3.1:
+            - args:  ./data/graph4096.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+            - args:  ./data/graph65536.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+            - args:  ./data/graph1MW_6.txt
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - cfd-rodinia-3.1:
+            - args:  ./data/fvcorr.domn.097K
+              accel-sim-mem: 10G
+              qos: big
+              openmp-cpus: 12
+            - args:  ./data/fvcorr.domn.193K
+              accel-sim-mem: 10G
+              qos: big
+              openmp-cpus: 12
+            - args:  ./data/missile.domn.0.2M
+              accel-sim-mem: 10G
+              qos: big
+              openmp-cpus: 12
+        - dwt2d-rodinia-3.1:
+            - args:  ./data/192.bmp -d 192x192 -f -5 -l 3
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+            - args:  ./data/rgb.bmp -d 1024x1024 -f -5 -l 3
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - gaussian-rodinia-3.1:
+            - args:  -f ./data/matrix4.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+            - args:  -s 16
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+            - args:  -f ./data/matrix208.txt
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+            - args:  -s 64
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+            - args:  -s 256
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - heartwall-rodinia-3.1:
+            - args:  ./data/test.avi 1
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+            # - args:  ./data/test.avi 20
+            #   accel-sim-mem: 70G
+            #   qos: big
+        - hotspot-rodinia-3.1:
+            - args:  512 2 2 ./data/temp_512 ./data/power_512 output.out
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args:  1024 2 2 ./data/temp_1024 ./data/power_1024 output.out
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - hotspot3D-rodinia-3.1:
+            - args:  512 8 100 ./data/power_512x8 ./data/temp_512x8 output.out
+              accel-sim-mem: 10G
+              qos: big
+              openmp-cpus: 4
+        - kmeans-rodinia-3.1:
+            - args:  -o -i ./data/28k_4x_features.txt
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args:  -o -i ./data/kdd_cup
+              accel-sim-mem: 20G
+              qos: all
+              openmp-cpus: 8
+            - args:  -o -i ./data/819200.txt
+              accel-sim-mem: 20G
+              qos: all
+              openmp-cpus: 8
+        - lavaMD-rodinia-3.1:
+            - args:  -boxes1d 10
+              accel-sim-mem: 130G
+              qos: big
+              openmp-cpus: 12
+              partition: memory
+        - lud-rodinia-3.1:
+            - args:  -s 256 -v
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+            - args:  -i ./data/512.dat
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - myocyte-rodinia-3.1:
+            - args:  100 1 0
+              accel-sim-mem: 6G
+              qos: big
+              openmp-cpus: 3
+        - nn-rodinia-3.1:
+            - args:  ./data/filelist_4 -r 5 -lat 30 -lng 90
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - nw-rodinia-3.1:
+            - args:  2048 10
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - particlefilter_float-rodinia-3.1:
+            - args:  -x 128 -y 128 -z 10 -np 1000
+              accel-sim-mem: 6G
+              qos: big
+              openmp-cpus: 3
+        - particlefilter_naive-rodinia-3.1:
+            - args:  -x 128 -y 128 -z 10 -np 1000
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - pathfinder-rodinia-3.1:
+            - args:  100000 100 20 > result.txt
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - srad_v1-rodinia-3.1:
+            - args:  100 0.5 502 458
+              accel-sim-mem: 15G
+              qos: big
+              openmp-cpus: 6
+        - streamcluster-rodinia-3.1:
+            - args:  3 6 16 65536 65536 1000 none output.txt 1 output.txt
+              accel-sim-mem: 10G
+              qos: big
+              openmp-cpus: 4
+            - args:  10 20 256 65536 65536 1000 none output.txt 1
+              accel-sim-mem: 10G
+              qos: large
+              openmp-cpus: 4
+
+parboil:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/parboil/"
+    execs:
+        - parboil-sad:
+            - args: -i ./data/default/input/reference.bin,./data/default/input/frame.bin -o out.bin
+              accel-sim-mem: 8G
+              qos: all
+              openmp-cpus: 4
+        - parboil-sgemm:
+            - args: -i ./data/medium/input/matrix1.txt,./data/medium/input/matrix2t.txt,./data/medium/input/matrix2t.txt -o matrix3.txt
+              accel-sim-mem: 16G
+              qos: all
+              openmp-cpus: 6
+        - parboil-stencil:
+            - args: -i ./data/small/input/128x128x32.bin -o 128x128x32.out -- 128 128 32 100
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - parboil-cutcp:
+            - args: -i ./data/small/input/watbox.sl40.pqr -o lattice.dat
+              accel-sim-mem: 35G
+              qos: all
+              openmp-cpus: 12
+        - parboil-mri-q:
+            - args: -i ./data/small/input/32_32_32_dataset.bin -o 32_32_32_dataset.out
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 3
+        - parboil-histo:
+            - args: -i ./data/default/input/img.bin -o ref.bmp -- 20 4
+              accel-sim-mem: 8G
+              qos: all
+              openmp-cpus: 4
+        - parboil-spmv: #crash not kernelslist.g
+            - args: -i ./data/large/input/Dubcova3.mtx.bin,./data/large/input/vector.bin -o Dubcova3.mtx.out
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+        - parboil-bfs:
+            - args: -i ./data/NY/input/graph_input.dat -o bfs-NY.out 
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+
+polybench:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/"
+    execs:
+        - polybench-2DConvolution:
+            - args: 
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+        - polybench-3DConvolution:
+            - args:
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - polybench-3mm:
+            - args: 
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+        - polybench-atax:
+            - args:
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - polybench-bicg:
+            - args:
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - polybench-fdtd2d:
+            - args:
+              accel-sim-mem: 15G
+              qos: large
+              openmp-cpus: 6
+        - polybench-gemm:
+            - args:
+              accel-sim-mem: 12G
+              qos: all
+              openmp-cpus: 4
+        - polybench-gesummv:
+            - args: 
+              accel-sim-mem: 15G
+              qos: big
+              openmp-cpus: 4
+        - polybench-gramschmidt:
+            - args:
+              accel-sim-mem: 10G
+              qos: large
+              openmp-cpus: 4
+        - polybench-mvt:
+            - args:
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - polybench-syrk:
+            - args:
+              accel-sim-mem: 25G
+              qos: big
+              openmp-cpus: 4
+
+cutlass_5_trace:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/"
+    execs:
+        - cutlass_perf_test:
+            - args: --seed=2020 --dist=0  --m=2560 --n=16 --k=2560 --kernels=wmma_gemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 16G
+              qos: all
+              openmp-cpus: 4
+            - args: --seed=2020 --dist=0  --m=2560 --n=32 --k=2560 --kernels=wmma_gemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 16G
+              qos: all
+              openmp-cpus: 4
+            - args: --seed=2020 --dist=0  --m=2560 --n=64 --k=2560 --kernels=wmma_gemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 16G
+              qos: all
+              openmp-cpus: 4
+            - args: --seed=2020 --dist=0  --m=2560 --n=128 --k=2560 --kernels=wmma_gemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 16G
+              qos: all
+              openmp-cpus: 4
+            - args: --seed=2020 --dist=0  --m=2560 --n=7000 --k=2560 --kernels=wmma_gemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 85G
+              qos: big
+              openmp-cpus: 6
+              partition: memory
+            - args: --seed=2020 --dist=0  --m=4096 --n=16 --k=4096 --kernels=wmma_gemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 30G
+              qos: big
+              openmp-cpus: 12
+            - args: --seed=2020 --dist=0  --m=4096 --n=32 --k=4096 --kernels=wmma_gemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 16G
+              qos: big
+              openmp-cpus: 4
+            - args: --seed=2020 --dist=0  --m=4096 --n=64 --k=4096 --kernels=wmma_gemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 16G
+              qos: all
+              openmp-cpus: 4
+            - args: --seed=2020 --dist=0  --m=4096 --n=128 --k=4096 --kernels=wmma_gemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 16G
+              qos: all
+              openmp-cpus: 4
+            - args: --seed=2020 --dist=0  --m=2560 --n=16 --k=2560 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 35G
+              qos: all
+              openmp-cpus: 12
+            - args: --seed=2020 --dist=0  --m=2560 --n=32 --k=2560 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 35G
+              qos: all
+              openmp-cpus: 12
+            - args: --seed=2020 --dist=0  --m=2560 --n=64 --k=2560 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 35G
+              qos: all
+              openmp-cpus: 12
+            - args: --seed=2020 --dist=0  --m=2560 --n=128 --k=2560 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 35G
+              qos: all
+              openmp-cpus: 12
+            - args: --seed=2020 --dist=0  --m=2560 --n=512 --k=2560 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 50G
+              qos: big
+              openmp-cpus: 16
+              partition: memory
+            - args: --seed=2020 --dist=0  --m=2560 --n=1024 --k=2560 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 80G
+              qos: big
+              openmp-cpus: 12
+              partition: memory
+            - args: --seed=2020 --dist=0  --m=2560 --n=2560 --k=2560 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 120G
+              qos: huge
+              openmp-cpus: 16
+              partition: memory
+            - args: --seed=2020 --dist=0  --m=4096 --n=16 --k=4096 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 40G
+              qos: big
+              openmp-cpus: 12
+              partition: memory
+            - args: --seed=2020 --dist=0  --m=4096 --n=32 --k=4096 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 40G
+              qos: big
+              openmp-cpus: 12
+              partition: memory
+            - args: --seed=2020 --dist=0  --m=4096 --n=64 --k=4096 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 45G
+              qos: big
+              openmp-cpus: 12
+              partition: memory
+            - args: --seed=2020 --dist=0  --m=4096 --n=128 --k=4096 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 45G
+              qos: big
+              openmp-cpus: 12
+              partition: memory
+
+
+cutlass_5_trace_sgemm:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/"
+    execs:
+        - cutlass_perf_test:
+            - args: --seed=2020 --dist=0  --m=2560 --n=16 --k=2560 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 35G
+              qos: all
+              openmp-cpus: 12
+
+cutlass_5_trace_sgemm_2560:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/"
+    execs:
+        - cutlass_perf_test:
+            - args: --seed=2020 --dist=0  --m=2560 --n=2560 --k=2560 --kernels=sgemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 120G
+              qos: huge
+              openmp-cpus: 16
+              partition: memory
+
+cutlass_5_trace_wmma:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/"
+    execs:
+        - cutlass_perf_test:
+            - args: --seed=2020 --dist=0  --m=2560 --n=16 --k=2560 --kernels=wmma_gemm_nn  --iterations=5 --providers=cutlass
+              accel-sim-mem: 16G
+              qos: all
+              openmp-cpus: 4
+
+ispass-2009:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/ispass-2009/"
+    execs:
+        - ispass-2009-AES:
+            - args:  e 128 ./data/output.bmp ./data/key128.txt
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - ispass-2009-BFS:
+            - args:  ./data/graph65536.txt
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        # Compile Issues
+        #benchmarks/cp/build/cuda_short/cp
+        #../bin/release/DG ./data/cubeK268.neu
+        # - ispass-2009-LIB:
+        #     - args:
+        #       accel-sim-mem: 10G
+        #       qos: all
+        #       openmp-cpus: 4
+        - ispass-2009-LPS:
+            - args:
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - ispass-2009-NN:
+            - args:  28
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - ispass-2009-NQU:
+            - args: 
+              accel-sim-mem: 6G
+              qos: all
+              openmp-cpus: 1
+        - ispass-2009-RAY:
+            - args:  256 256
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - ispass-2009-STO:
+            - args:
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        # - ispass-2009-WP:
+        #     - args:  < ./data/args
+        #       accel-sim-mem: 10G
+        #       qos: all
+        #       openmp-cpus: 4
+
+dragon-naive:
+    exec_dir: "$GPUAPPS_ROOT/src/cuda/dragon_li/bin/$CUDA_VERSION/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/dragon/"
+    execs:
+        - testBfs:
+            - args: -g ./data/sample_cdp.gr -e -v
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: -g ./data/citationCiteseer.graph -f metis -e -v
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: -g ./data/coPapersDBLP.graph -f metis -e -v --sf 1.5
+              accel-sim-mem: 40G
+              qos: big
+              openmp-cpus: 12
+        - testAmr:
+            - args: -v -e -r 20
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - testSssp:
+            - args: -g ./data/sample_cdp.gr -e -v
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: -g ./data/citationCiteseer.graph -f metis -e -v
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: -g ./data/coPapersDBLP.graph -f metis -e -v
+              accel-sim-mem: 20G
+              qos: all
+              openmp-cpus: 4
+        - testJoin:
+            - args: -v -e -l 204800 -r 204800
+              accel-sim-mem: 90G
+              qos: all
+              openmp-cpus: 12
+
+dragon-cdp:
+    exec_dir: "$GPUAPPS_ROOT/src/cuda/dragon_li/cdp_bin/$CUDA_VERSION/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/dragon/"
+    execs:
+        - testBfs-cdp:
+            - args: -g ./data/sample_cdp.gr -e -v --cdp
+            - args: -g ./data/citationCiteseer.graph -f metis -e -v --cdp
+            - args: -g ./data/coPapersDBLP.graph -f metis -e -v --cdp --sf 1.5
+        - testSssp-cdp:
+            - args: -g ./data/sample_cdp.gr -e -v --cdp
+            - args: -g ./data/citationCiteseer.graph -f metis -e -v --cdp
+            - args: -g ./data/coPapersDBLP.graph -f metis -e -v --cdp
+
+
+proxy-apps-doe:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/proxy-apps-doe/"
+    execs:
+         - cns_all:
+            - args: 64 32 32 1
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+         - XSBench:
+            - args: 12 small 0
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            # - args: 12 large 0
+            #   accel-sim-mem: 15G
+            #   qos: all
+            #   openmp-cpus: 4
+         - lulesh:
+            - args: 1e-7
+              accel-sim-mem: 15G
+              qos: big
+              openmp-cpus: 4
+
+pannotia:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/pannotia/"
+    execs:
+        - bc:
+            - args: ./data/1k_128k.gr
+              accel-sim-mem: 10G
+              qos: large
+              openmp-cpus: 4
+            - args: ./data/2k_1M.gr
+              accel-sim-mem: 30G
+              qos: large
+              openmp-cpus: 12
+        - color_max:
+            - args: ./data/ecology1.graph 1
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+            - args: ./data/G3_circuit.graph 1
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+        - color_maxmin:
+            - args: ./data/ecology1.graph 1
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+            - args: ./data/G3_circuit.graph 1
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 4
+        - fw:
+            - args: ./data/256_16384.gr
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+        - fw_block:
+            - args: ./data/256_16384.gr
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: ./data/512_65536.gr
+              accel-sim-mem: 10G
+              qos: big
+              openmp-cpus: 4
+        - mis:
+            - args: ./data/ecology1.graph 1
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+            - args: ./data/G3_circuit.graph 1
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+        - pagerank:
+            - args: ./data/coAuthorsDBLP.graph 1
+              accel-sim-mem: 15G
+              qos: big
+              openmp-cpus: 6
+        - pagerank_spmv:
+            - args: ./data/coAuthorsDBLP.graph 1
+              accel-sim-mem: 15G
+              qos: big
+              openmp-cpus: 6
+
+lonestargpu-2.0:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/lonestargpu-2.0/"
+    execs:
+        # Needs Texture
+        - lonestar-bfs-atomic:
+            - args: ./data/r4-2e20.gr
+              accel-sim-mem: 15G
+              qos: big
+              openmp-cpus: 6
+            - args: ./data/rmat20.gr
+              accel-sim-mem: 20G
+              qos: big
+              openmp-cpus: 10
+            - args: ./data/USA-road-d.NY.gr
+              accel-sim-mem: 20G
+              qos: big
+              openmp-cpus: 8
+        - lonestar-bfs-wlw: 
+            - args: ./data/r4-2e20.gr
+              accel-sim-mem: 15G
+              qos: big
+              openmp-cpus: 6
+            - args: ./data/rmat20.gr
+              accel-sim-mem: 25G
+              qos: big
+              openmp-cpus: 8
+            - args: ./data/USA-road-d.NY.gr
+              accel-sim-mem: 20G
+              qos: all
+              openmp-cpus: 6
+        - lonestar-bfs-wla: 
+            - args: ./data/r4-2e20.gr
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+            - args: ./data/rmat20.gr
+              accel-sim-mem: 15G
+              qos: all
+              openmp-cpus: 6
+            - args: ./data/USA-road-d.NY.gr
+              accel-sim-mem: 20G
+              qos: all
+              openmp-cpus: 6
+        - lonestar-sssp:
+            - args: ./data/r4-2e20.gr
+              accel-sim-mem: 10G
+              qos: big
+              openmp-cpus: 4
+            - args: ./data/rmat20.gr
+              accel-sim-mem: 45G
+              qos: large
+              openmp-cpus: 10
+            - args: ./data/USA-road-d.NY.gr
+              accel-sim-mem: 25G
+              qos: large
+              openmp-cpus: 6
+        - lonestar-sssp-wln: 
+            - args: ./data/r4-2e20.gr
+              accel-sim-mem: 35G
+              qos: big
+              openmp-cpus: 12
+            - args: ./data/rmat20.gr
+              accel-sim-mem: 110G
+              qos: big
+              openmp-cpus: 16
+              partition: memory
+            - args: ./data/USA-road-d.NY.gr
+              accel-sim-mem: 30G
+              qos: big
+              openmp-cpus: 14
+            - args: ./data/USA-road-d.FLA.gr
+              accel-sim-mem: 30G
+              qos: big
+              openmp-cpus: 14
+        - lonestar-mst:
+            - args: ./data/rmat12.sym.gr
+              accel-sim-mem: 10G
+              qos: all
+              openmp-cpus: 4
+            - args: ./data/USA-road-d.FLA.sym.gr
+              accel-sim-mem: 15G
+              qos: big
+              openmp-cpus: 6
+            - args: ./data/2d-2e20.sym.gr
+              accel-sim-mem: 15G
+              qos: big
+              openmp-cpus: 6

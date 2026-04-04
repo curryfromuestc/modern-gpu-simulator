@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package dynamic_trace;
+
+import "cuda_stream.proto";
+
+message gpu_device {
+  uint32 id = 1;
+  map<int64,cuda_stream> streams = 2;
+}

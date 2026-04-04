@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package dynamic_trace;
+
+message dim3d {
+  int32 x = 1;
+  int32 y = 2;
+  int32 z = 3;
+}

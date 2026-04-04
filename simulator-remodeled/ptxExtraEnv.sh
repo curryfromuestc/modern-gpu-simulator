@@ -1,0 +1,1 @@
+export GPUAPPS_ROOT="$(pwd)/gpu-app-collection"

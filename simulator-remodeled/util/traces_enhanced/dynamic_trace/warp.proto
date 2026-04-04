@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package dynamic_trace;
+
+import "instruction.proto";
+
+message warp {
+  int32 id = 1;
+  repeated instruction instructions = 2;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package dynamic_trace;
+
+message address {
+  int32 data_width = 1;
+  uint32 udesc_value = 2;
+  int32 compression_format = 3;
+  uint64 base_address = 4;
+  int32 stride = 5;
+  repeated int64 addrs = 6;
+}
