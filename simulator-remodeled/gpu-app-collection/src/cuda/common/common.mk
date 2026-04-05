@@ -108,8 +108,12 @@ NVCCFLAGS       :=
 LIB_ARCH        := $(OSARCH)
 
 # Determining the necessary Cross-Compilation Flags
+ifeq ($(OSARCH),aarch64)
+    LIB_ARCH        = aarch64
+    # No -m64/-m32 on aarch64
+else
 # 32-bit OS, but we target 64-bit cross compilation
-ifeq ($(x86_64),1) 
+ifeq ($(x86_64),1)
     NVCCFLAGS       += -m64
     LIB_ARCH         = x86_64
     ifneq ($(DARWIN),)
@@ -117,7 +121,7 @@ ifeq ($(x86_64),1)
     else
          CXX_ARCH_FLAGS += -m64
     endif
-else 
+else
 # 64-bit OS, and we target 32-bit cross compilation
     ifeq ($(i386),1)
         NVCCFLAGS       += -m32
@@ -127,7 +131,7 @@ else
         else
              CXX_ARCH_FLAGS += -m32
         endif
-    else 
+    else
         ifeq "$(strip $(HP_64))" ""
             LIB_ARCH        = i386
             NVCCFLAGS      += -m32
@@ -146,6 +150,7 @@ else
             endif
         endif
     endif
+endif
 endif
 
 # Compiler-specific flags (by default, we always use sm_10, sm_20, and sm_30), unless we use the SMVERSION template

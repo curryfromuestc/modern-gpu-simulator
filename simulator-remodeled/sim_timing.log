@@ -1,0 +1,13 @@
+# Simulator serial run timing (wall-clock seconds)
+# bench,seconds
+backprop-rodinia-2.0-ft,12
+bfs-rodinia-2.0-ft,10
+hotspot-rodinia-2.0-ft,25
+nw-rodinia-2.0-ft,9
+heartwall-rodinia-2.0-ft,6
+lud-rodinia-2.0-ft,13
+nn-rodinia-2.0-ft,1
+pathfinder-rodinia-2.0-ft,3
+srad_v2-rodinia-2.0-ft,5
+streamcluster-rodinia-2.0-ft,135
+TOTAL,219

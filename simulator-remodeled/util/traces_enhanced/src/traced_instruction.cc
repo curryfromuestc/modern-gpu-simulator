@@ -44,7 +44,8 @@ void get_opcode_map(const std::unordered_map<std::string, OpcodeChar> *&OpcodeMa
     if(binary_verion == BLACKWELL_RTX_BINART_VERSION)
     OpcodeMap = &Blackwell_OpcodeMap;
   else if (binary_verion == AMPERE_RTX_BINART_VERSION ||
-      binary_verion == AMPERE_A100_BINART_VERSION)
+      binary_verion == AMPERE_A100_BINART_VERSION ||
+      binary_verion == AMPERE_ORIN_BINART_VERSION)
     OpcodeMap = &Ampere_OpcodeMap;
   else if (binary_verion == VOLTA_BINART_VERSION ||
            binary_verion == VOLTA_JETSON_BINART_VERSION)

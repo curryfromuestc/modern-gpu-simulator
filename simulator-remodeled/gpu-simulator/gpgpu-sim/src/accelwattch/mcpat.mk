@@ -16,20 +16,28 @@ INCS = -lm
 CC=
 CXX=
 
-ifeq ($(shell getconf LONG_BIT),64) 
-	CXX = g++ -m64
-	CC  = gcc -m64
-else 
-	CXX = g++ -m32
-	CC  = gcc -m32
-endif 
+HOST_ARCH := $(shell uname -m)
+ifeq ($(HOST_ARCH),aarch64)
+	CXX = g++
+	CC  = gcc
+	ARCH_OPT =
+else
+	ifeq ($(shell getconf LONG_BIT),64)
+		CXX = g++ -m64
+		CC  = gcc -m64
+	else
+		CXX = g++ -m32
+		CC  = gcc -m32
+	endif
+	ARCH_OPT = -msse2 -mfpmath=sse
+endif
 
 ifeq ($(TAG),dbg)
-  DBG = -Wall 
+  DBG = -Wall
   OPT = -ggdb -fPIC -g -O0 -DNTHREADS=1 -Icacti -lz
 else
-  DBG = 
-  OPT = -O3 -fPIC -msse2 -mfpmath=sse -DNTHREADS=$(NTHREADS) -Icacti -lz
+  DBG =
+  OPT = -O3 -fPIC $(ARCH_OPT) -DNTHREADS=$(NTHREADS) -Icacti -lz
   #OPT = -O0 -DNTHREADS=$(NTHREADS)
 endif
 

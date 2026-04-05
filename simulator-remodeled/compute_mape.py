@@ -60,25 +60,34 @@ def parse_ncu_cycles(hw_dir, benchmark_name, args_folder):
     for fname in os.listdir(bench_dir):
         if "gpc__cycles_elapsed" in fname:
             fpath = os.path.join(bench_dir, fname)
-            started = False
-            read_next = False
+            # Collect CSV lines after the "==PROF== Disconnected" marker
+            csv_lines = []
+            collecting = False
             with open(fpath, "r") as f:
                 for line in f:
-                    if read_next:
-                        parts = line.split(",")
-                        # Format: "kernel_id","metric","cycle",value
-                        try:
-                            val_str = parts[-1].strip().strip('"').replace(",", "")
-                            cycles = float(val_str)
-                            total_cycles += cycles
-                            kernel_count += 1
-                        except (ValueError, IndexError):
-                            pass
-                        read_next = False
-                    if started:
-                        read_next = True
                     if "==PROF== Disconnected from process" in line:
-                        started = True
+                        collecting = True
+                        continue
+                    if collecting:
+                        csv_lines.append(line)
+            if not csv_lines:
+                return None, 0
+            # Parse using csv.reader to handle quoted fields with commas
+            reader = csv.reader(csv_lines)
+            rows = list(reader)
+            if not rows:
+                return None, 0
+            # Skip header
+            for row in rows[1:]:
+                if not row:
+                    continue
+                try:
+                    val_str = row[-1].strip().replace(",", "")
+                    cycles = float(val_str)
+                    total_cycles += cycles
+                    kernel_count += 1
+                except (ValueError, IndexError):
+                    pass
             return total_cycles, kernel_count
     return None, 0
 
@@ -98,9 +107,9 @@ def parse_sim_cycles(sim_dir, benchmark_name, args_folder, config_name):
             try:
                 with open(fpath, "r") as f:
                     content = f.read()
-                    match = re.search(r"gpu_tot_sim_cycle\s*=\s*(\d+)", content)
-                    if match:
-                        return int(match.group(1))
+                    matches = re.findall(r"gpu_tot_sim_cycle\s*=\s*(\d+)", content)
+                    if matches:
+                        return int(matches[-1])
             except (UnicodeDecodeError, PermissionError):
                 continue
 
@@ -111,9 +120,9 @@ def parse_sim_cycles(sim_dir, benchmark_name, args_folder, config_name):
             try:
                 with open(fpath, "r") as f:
                     content = f.read()
-                    match = re.search(r"gpu_tot_sim_cycle\s*=\s*(\d+)", content)
-                    if match:
-                        return int(match.group(1))
+                    matches = re.findall(r"gpu_tot_sim_cycle\s*=\s*(\d+)", content)
+                    if matches:
+                        return int(matches[-1])
             except (UnicodeDecodeError, PermissionError):
                 continue
     return None

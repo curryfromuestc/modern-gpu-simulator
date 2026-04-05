@@ -1,0 +1,12 @@
+# Simulator serial run timing - FIXED (trace.config loaded)
+# bench,seconds,cycles
+backprop-rodinia-2.0-ft,15,97696
+hotspot-rodinia-2.0-ft,46,351654
+nw-rodinia-2.0-ft,8,120574
+heartwall-rodinia-2.0-ft,5,25374
+lud-rodinia-2.0-ft,11,161859
+nn-rodinia-2.0-ft,15,55845
+pathfinder-rodinia-2.0-ft,3,26687
+srad_v2-rodinia-2.0-ft,13,78316
+streamcluster-rodinia-2.0-ft,119,915206
+TOTAL,235

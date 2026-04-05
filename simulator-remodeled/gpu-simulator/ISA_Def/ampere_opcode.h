@@ -11,6 +11,7 @@
 
 #define AMPERE_RTX_BINART_VERSION 86
 #define AMPERE_A100_BINART_VERSION 80
+#define AMPERE_ORIN_BINART_VERSION 87
 
 // TO DO: moving this to a yml or def files
 

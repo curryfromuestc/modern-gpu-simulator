@@ -5,12 +5,20 @@
 
 
 /*----------- using cycle counter ------------*/
-     __inline__ uint64_t rdtsc() 
+     __inline__ uint64_t rdtsc()
      {
+#if defined(__aarch64__)
+          uint64_t val;
+          __asm__ __volatile__ ("mrs %0, cntvct_el0" : "=r" (val));
+          return val;
+#elif defined(__x86_64__) || defined(__i386__)
           uint32_t lo, hi;
              /* We cannot use "=A", since this would use %rax on x86_64 */
              __asm__ __volatile__ ("rdtsc" : "=a" (lo), "=d" (hi));
                 return (uint64_t)hi << 32 | lo;
+#else
+          return 0;
+#endif
      }
 
 unsigned long long start_cycles;

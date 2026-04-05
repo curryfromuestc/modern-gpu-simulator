@@ -13,24 +13,36 @@ endif
 LIBS = 
 INCS = -lm
 
-ifeq ($(TAG),dbg)
-  DBG = -Wall 
-  OPT = -ggdb -g -O0 -DNTHREADS=1  -gstabs+
+HOST_ARCH := $(shell uname -m)
+ifeq ($(HOST_ARCH),aarch64)
+	ARCH_OPT =
 else
-  DBG = 
-  OPT = -O3 -msse2 -mfpmath=sse -DNTHREADS=$(NTHREADS)
+	ARCH_OPT = -msse2 -mfpmath=sse
 endif
 
-#CXXFLAGS = -Wall -Wno-unknown-pragmas -Winline $(DBG) $(OPT) 
-CXXFLAGS = -Wno-unknown-pragmas $(DBG) $(OPT) 
+ifeq ($(TAG),dbg)
+  DBG = -Wall
+  OPT = -ggdb -g -O0 -DNTHREADS=1  -gstabs+
+else
+  DBG =
+  OPT = -O3 $(ARCH_OPT) -DNTHREADS=$(NTHREADS)
+endif
 
-ifeq ($(shell getconf LONG_BIT),64) 
-	CXX = g++ -m64
-	CC  = gcc -m64
-else 
-	CXX = g++ -m32
-	CC  = gcc -m32
-endif 
+#CXXFLAGS = -Wall -Wno-unknown-pragmas -Winline $(DBG) $(OPT)
+CXXFLAGS = -Wno-unknown-pragmas $(DBG) $(OPT)
+
+ifeq ($(HOST_ARCH),aarch64)
+	CXX = g++
+	CC  = gcc
+else
+	ifeq ($(shell getconf LONG_BIT),64)
+		CXX = g++ -m64
+		CC  = gcc -m64
+	else
+		CXX = g++ -m32
+		CC  = gcc -m32
+	endif
+endif
 
 
 SRCS  = area.cc bank.cc mat.cc main.cc Ucache.cc io.cc technology.cc basic_circuit.cc parameter.cc \
