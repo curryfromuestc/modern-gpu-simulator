@@ -89,7 +89,9 @@ void Dependency_State::reset() {
 
 void Dependency_State::cycle() {
     m_yield >>=1;
-    m_stall_counter >>=1;
+    // Verified on sm_87 (TASK-L0-001): 1 stall count = 1 cycle (linear decrement).
+    // Original >>=1 halved the counter, clearing stall=15 in ~4 cycles instead of 15.
+    if (m_stall_counter > 0) m_stall_counter--;
 }
 
 void Dependency_State::set_yield() {
@@ -97,6 +99,10 @@ void Dependency_State::set_yield() {
 }
 
 void Dependency_State::set_stall_counter(unsigned int stall_counter) {
+    // Verified on sm_87 (TASK-L0-001): minimum effective stall is 2 cycles
+    // for same-warp consecutive instructions (pipeline issue-to-issue minimum).
+    // stall=0 means no stall (special case), stall=1 behaves as stall=2.
+    if (stall_counter > 0 && stall_counter < 2) stall_counter = 2;
     m_stall_counter = stall_counter;
 }
 
