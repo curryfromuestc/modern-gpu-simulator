@@ -21,3 +21,4 @@ util/traces_enhanced/pb_trace
 spot/
 *.png
 stats_output_*
+exampleTraces/extracted/
