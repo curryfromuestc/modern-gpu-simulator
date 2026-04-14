@@ -1,0 +1,29 @@
+============================================
+  Orin MAXN run: 10 benchmarks
+  Config: SM87_ORIN_AGX_MAXN-SASS
+  Started: Tue Apr 14 02:48:57 PM CST 2026
+============================================
+[1/10] backprop-rodinia-2.0-ft  (14:48:57)
+  DONE  cycles=52940  (14:49:15)
+[2/10] bfs-rodinia-2.0-ft  (14:49:15)
+  DONE  cycles=114857  (14:49:32)
+[3/10] heartwall-rodinia-2.0-ft  (14:49:32)
+  DONE  cycles=17515  (14:49:38)
+[4/10] hotspot-rodinia-2.0-ft  (14:49:38)
+  DONE  cycles=177582  (14:50:31)
+[5/10] lud-rodinia-2.0-ft  (14:50:31)
+  DONE  cycles=136230  (14:50:44)
+[6/10] nn-rodinia-2.0-ft  (14:50:44)
+  DONE  cycles=34410  (14:50:55)
+[7/10] nw-rodinia-2.0-ft  (14:50:55)
+  DONE  cycles=98326  (14:51:01)
+[8/10] pathfinder-rodinia-2.0-ft  (14:51:01)
+  DONE  cycles=29040  (14:51:03)
+[9/10] srad_v2-rodinia-2.0-ft  (14:51:03)
+  DONE  cycles=45173  (14:51:09)
+[10/10] streamcluster-rodinia-2.0-ft  (14:51:09)
+  DONE  cycles=892798  (14:52:33)
+============================================
+  Done: 10 pass / 0 fail
+  Finished: Tue Apr 14 02:52:33 PM CST 2026
+============================================

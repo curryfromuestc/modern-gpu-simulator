@@ -1,0 +1,103 @@
+============================================
+  Ablation Study: 3 configs x 10 benchmarks = 30 runs
+  Output: /home/yanggl/code/modern-gpu-simulator/simulator-remodeled/sim_run_ablation
+  Started: Mon Apr 13 05:18:12 PM CST 2026
+============================================
+
+[1/30] SM87_ORIN_AGX_ablation_C0_baseline / backprop-rodinia-2.0-ft
+  Started: 17:18:12
+  DONE (17:18:26)
+[2/30] SM87_ORIN_AGX_ablation_C0_baseline / bfs-rodinia-2.0-ft
+  Started: 17:18:26
+  DONE (17:18:42)
+[3/30] SM87_ORIN_AGX_ablation_C0_baseline / heartwall-rodinia-2.0-ft
+  Started: 17:18:42
+  DONE (17:18:48)
+[4/30] SM87_ORIN_AGX_ablation_C0_baseline / hotspot-rodinia-2.0-ft
+  Started: 17:18:48
+  DONE (17:19:18)
+[5/30] SM87_ORIN_AGX_ablation_C0_baseline / lud-rodinia-2.0-ft
+  Started: 17:19:18
+  DONE (17:19:34)
+[6/30] SM87_ORIN_AGX_ablation_C0_baseline / nn-rodinia-2.0-ft
+  Started: 17:19:34
+  DONE (17:19:47)
+[7/30] SM87_ORIN_AGX_ablation_C0_baseline / nw-rodinia-2.0-ft
+  Started: 17:19:47
+  DONE (17:19:54)
+[8/30] SM87_ORIN_AGX_ablation_C0_baseline / pathfinder-rodinia-2.0-ft
+  Started: 17:19:54
+  DONE (17:19:58)
+[9/30] SM87_ORIN_AGX_ablation_C0_baseline / srad_v2-rodinia-2.0-ft
+  Started: 17:19:58
+  DONE (17:20:08)
+[10/30] SM87_ORIN_AGX_ablation_C0_baseline / streamcluster-rodinia-2.0-ft
+  Started: 17:20:08
+  DONE (17:21:30)
+[11/30] SM87_ORIN_AGX_ablation_C1_L1 / backprop-rodinia-2.0-ft
+  Started: 17:21:30
+  DONE (17:21:40)
+[12/30] SM87_ORIN_AGX_ablation_C1_L1 / bfs-rodinia-2.0-ft
+  Started: 17:21:40
+  DONE (17:21:51)
+[13/30] SM87_ORIN_AGX_ablation_C1_L1 / heartwall-rodinia-2.0-ft
+  Started: 17:21:51
+  DONE (17:21:57)
+[14/30] SM87_ORIN_AGX_ablation_C1_L1 / hotspot-rodinia-2.0-ft
+  Started: 17:21:57
+  DONE (17:22:20)
+[15/30] SM87_ORIN_AGX_ablation_C1_L1 / lud-rodinia-2.0-ft
+  Started: 17:22:20
+  DONE (17:22:31)
+[16/30] SM87_ORIN_AGX_ablation_C1_L1 / nn-rodinia-2.0-ft
+  Started: 17:22:31
+  DONE (17:22:44)
+[17/30] SM87_ORIN_AGX_ablation_C1_L1 / nw-rodinia-2.0-ft
+  Started: 17:22:44
+  DONE (17:22:54)
+[18/30] SM87_ORIN_AGX_ablation_C1_L1 / pathfinder-rodinia-2.0-ft
+  Started: 17:22:54
+  DONE (17:22:58)
+[19/30] SM87_ORIN_AGX_ablation_C1_L1 / srad_v2-rodinia-2.0-ft
+  Started: 17:22:58
+  DONE (17:23:08)
+[20/30] SM87_ORIN_AGX_ablation_C1_L1 / streamcluster-rodinia-2.0-ft
+  Started: 17:23:08
+  DONE (17:24:43)
+[21/30] SM87_ORIN_AGX_ablation_C2_L1L2 / backprop-rodinia-2.0-ft
+  Started: 17:24:43
+  DONE (17:24:53)
+[22/30] SM87_ORIN_AGX_ablation_C2_L1L2 / bfs-rodinia-2.0-ft
+  Started: 17:24:53
+  DONE (17:25:04)
+[23/30] SM87_ORIN_AGX_ablation_C2_L1L2 / heartwall-rodinia-2.0-ft
+  Started: 17:25:04
+  DONE (17:25:10)
+[24/30] SM87_ORIN_AGX_ablation_C2_L1L2 / hotspot-rodinia-2.0-ft
+  Started: 17:25:10
+  DONE (17:25:34)
+[25/30] SM87_ORIN_AGX_ablation_C2_L1L2 / lud-rodinia-2.0-ft
+  Started: 17:25:34
+  DONE (17:25:46)
+[26/30] SM87_ORIN_AGX_ablation_C2_L1L2 / nn-rodinia-2.0-ft
+  Started: 17:25:46
+  DONE (17:26:02)
+[27/30] SM87_ORIN_AGX_ablation_C2_L1L2 / nw-rodinia-2.0-ft
+  Started: 17:26:02
+  DONE (17:26:12)
+[28/30] SM87_ORIN_AGX_ablation_C2_L1L2 / pathfinder-rodinia-2.0-ft
+  Started: 17:26:12
+  DONE (17:26:17)
+[29/30] SM87_ORIN_AGX_ablation_C2_L1L2 / srad_v2-rodinia-2.0-ft
+  Started: 17:26:17
+  DONE (17:26:26)
+[30/30] SM87_ORIN_AGX_ablation_C2_L1L2 / streamcluster-rodinia-2.0-ft
+  Started: 17:26:26
+  DONE (17:28:06)
+
+============================================
+  Ablation Study Complete
+  Finished: Mon Apr 13 05:28:06 PM CST 2026
+  Pass: 30 / 30    Fail: 0 / 30
+  Results in: /home/yanggl/code/modern-gpu-simulator/simulator-remodeled/sim_run_ablation
+============================================
