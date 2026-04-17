@@ -82,7 +82,7 @@ checkenv: makedirs
 	fi
 
 $(BIN_DIR)/accel-sim.out: traces_enhanced trace-driven trace-parser gpgpu-sim makedirs $(BUILD_DIR)/main.o version
-	$(CXX) -std=c++17 -L$(GPGPUSIM_ROOT)/lib/$(GPGPUSIM_CONFIG)/ -lm -lGL -pthread -lz -lcudart -lz $(BUILD_DIR)/*.o $(TRACES_ENHANCED_OBJ) $(TRACES_ENHANCED_PROTOCOL_BUFFER_OBJ) -lgomp $(shell PKG_CONFIG_PATH=/home/yanggl/miniconda3/lib/pkgconfig pkg-config --libs protobuf) -o $(BIN_DIR)/accel-sim.out $(SANITIZER_FLAG_FULL)
+	$(CXX) -std=c++17 -L$(GPGPUSIM_ROOT)/lib/$(GPGPUSIM_CONFIG)/ -lm -lGL -pthread -lz -lcudart -lz $(BUILD_DIR)/*.o $(TRACES_ENHANCED_OBJ) $(TRACES_ENHANCED_PROTOCOL_BUFFER_OBJ) -lgomp -lprotobuf -o $(BIN_DIR)/accel-sim.out $(SANITIZER_FLAG_FULL)
 
 $(BUILD_DIR)/main.o: main.cc version
 	$(CXX) $(CXXFLAGS) $(SANITZER_FLAG) -I$(BUILD_DIR) -I./trace-driven -I./trace-parser -I$(GPGPUSIM_ROOT)/libcuda -I$(GPGPUSIM_ROOT)/src -I$(CUDA_INSTALL_PATH)/include -c main.cc -o $(BUILD_DIR)/main.o

@@ -21,6 +21,9 @@ RTXA6000:
 RTX2070_S:
     base_file: "$GPGPUSIM_ROOT/configs/tested-cfgs/SM75_RTX2070_S/gpgpusim.config"
 
+RTX4070_S:
+    base_file: "$GPGPUSIM_ROOT/configs/tested-cfgs/SM89_RTX4070_S/gpgpusim.config"
+
 RTX2080_TI:
     base_file: "$GPGPUSIM_ROOT/configs/tested-cfgs/SM75_RTX2080_TI/gpgpusim.config"
 

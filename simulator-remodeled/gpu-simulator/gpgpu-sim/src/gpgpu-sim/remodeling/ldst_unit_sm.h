@@ -33,6 +33,7 @@
 #include <queue>
 #include <memory>
 #include <deque>
+#include <functional>
 
 #include "../stats.h"
 #include "../shader.h"
