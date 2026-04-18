@@ -12,6 +12,9 @@ RTX3080_TI:
 RTX3080:
     base_file: "$GPGPUSIM_ROOT/configs/tested-cfgs/SM86_RTX3080/gpgpusim.config"
 
+RTX3060:
+    base_file: "$GPGPUSIM_ROOT/configs/tested-cfgs/SM86_RTX3060/gpgpusim.config"
+
 RTX3090:
     base_file: "$GPGPUSIM_ROOT/configs/tested-cfgs/SM86_RTX3090/gpgpusim.config"
 
